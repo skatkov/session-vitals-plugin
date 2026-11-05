@@ -1,5 +1,5 @@
 {
   "name": "claude-code-vitals",
   "owner": { "name": "Stanislav Katkov" },
-  "plugins": [{ "name": "session-vitals", "source": "./" }]
+  "plugins": [{ "name": "session-vitals", "source": "./claude-code" }]
 }
