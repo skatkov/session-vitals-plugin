@@ -6,6 +6,10 @@ on:
 permissions:
   contents: read
 
+defaults:
+  run:
+    working-directory: opencode
+
 jobs:
   mutation:
     runs-on: ubuntu-latest
@@ -16,6 +20,7 @@ jobs:
         with:
           node-version: 26
           cache: npm
+          cache-dependency-path: opencode/package-lock.json
       - run: npm ci
       - run: npm run check
       - run: npm run test:mutation
@@ -23,5 +28,5 @@ jobs:
         if: always()
         with:
           name: mutation-report
-          path: reports/mutation/
+          path: opencode/reports/mutation/
           if-no-files-found: warn

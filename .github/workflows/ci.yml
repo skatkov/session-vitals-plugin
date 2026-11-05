@@ -7,6 +7,10 @@ on:
 permissions:
   contents: read
 
+defaults:
+  run:
+    working-directory: opencode
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -16,6 +20,7 @@ jobs:
         with:
           node-version: 26
           cache: npm
+          cache-dependency-path: opencode/package-lock.json
       - run: npm ci
       - run: npm run check
       - run: npm test

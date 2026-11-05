@@ -1,5 +1,13 @@
 {
   "name": "claude-code-vitals",
-  "owner": { "name": "Stanislav Katkov" },
-  "plugins": [{ "name": "session-vitals", "source": "./claude-code" }]
+  "description": "Session usage in the prompt footer and sidebar of your terminal coding agent.",
+  "owner": {
+    "name": "Stanislav Katkov"
+  },
+  "plugins": [
+    {
+      "name": "session-vitals",
+      "source": "./claude-code"
+    }
+  ]
 }

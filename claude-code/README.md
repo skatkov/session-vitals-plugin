@@ -52,32 +52,11 @@ On a resumed session the earlier history carries no per-request usage, so steps 
 
 ## Install
 
-At the prompt of a Claude Code terminal session:
-
 ```text
 /plugin install session-vitals --marketplace skatkov/session-vitals-plugin
 ```
 
-From a shell:
-
-```sh
-claude plugin install session-vitals --marketplace skatkov/session-vitals-plugin
-```
-
-## Development
-
-Run a session with the plugin loaded from this folder (it hot-reloads on save):
-
-```sh
-claude --plugin-dir ~/Code/claude-code-vitals
-```
-
-Check and test it:
-
-```sh
-claude plugin validate .
-claude plugin test .
-```
+For development, see the [root README](../README.md#development).
 
 ## License
 

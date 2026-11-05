@@ -99,19 +99,19 @@ Restart or reload the terminal client to load the plugin.
 Use **Node 26.4.0 or newer** and npm for the checkout's dependencies and development checks, matching OpenTUI's declared Node runtime minimum:
 
 ```sh
-git clone https://github.com/skatkov/opencode-vitals-terminal.git
-cd opencode-vitals-terminal
+git clone https://github.com/skatkov/session-vitals-plugin.git
+cd session-vitals-plugin/opencode
 npm ci
 ```
 
 For **mise** users, `mise.toml` pins a compatible Node version for this checkout. Run `mise install` before `npm ci`. If mise is not activated in your shell, use `mise exec -- npm ci` instead.
 
-In the configuration above, replace `opencode-vitals-terminal` with the absolute path to your checkout, such as `/absolute/path/opencode-vitals-terminal`. Keep both `-opencode.prompt.footer` and `-opencode.sidebar.context` entries, then restart or reload the terminal client.
+In the configuration above, replace `opencode-vitals-terminal` with the absolute path to your checkout, such as `/absolute/path/session-vitals-plugin/opencode`. Keep both `-opencode.prompt.footer` and `-opencode.sidebar.context` entries, then restart or reload the terminal client.
 
 ### Preview without changing configuration
 
 ```sh
-OPENCODE_CLI_CONFIG_CONTENT='{"plugins":["-opencode.prompt.footer","-opencode.sidebar.context","/absolute/path/opencode-vitals-terminal"]}' opencode
+OPENCODE_CLI_CONFIG_CONTENT='{"plugins":["-opencode.prompt.footer","-opencode.sidebar.context","/absolute/path/session-vitals-plugin/opencode"]}' opencode
 ```
 
 The environment override replaces the configured plugin array for that process; include any other terminal plugins you want in that preview.

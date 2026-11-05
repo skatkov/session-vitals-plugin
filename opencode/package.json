@@ -7,11 +7,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/skatkov/opencode-vitals-terminal.git"
+    "url": "git+https://github.com/skatkov/session-vitals-plugin.git",
+    "directory": "opencode"
   },
-  "homepage": "https://github.com/skatkov/opencode-vitals-terminal#readme",
+  "homepage": "https://github.com/skatkov/session-vitals-plugin/tree/main/opencode#readme",
   "bugs": {
-    "url": "https://github.com/skatkov/opencode-vitals-terminal/issues"
+    "url": "https://github.com/skatkov/session-vitals-plugin/issues"
   },
   "publishConfig": {
     "access": "public",
