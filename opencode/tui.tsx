@@ -10,7 +10,7 @@ import { VitalsStore } from "./src/vitals-store.ts"
 import { createFooterSummary, createSidebarRows } from "./src/vitals-views.ts"
 
 export default Plugin.define({
-  id: "opencode-vitals-terminal",
+  id: "opencode-session-vitals",
   setup(context) {
     const sidebar = new SidebarStore()
     const cached = (sessionID: string) => {
@@ -76,7 +76,7 @@ export default Plugin.define({
       mode: "global",
       commands: [
         {
-          id: "opencode-vitals-terminal.show",
+          id: "opencode-session-vitals.show",
           title: "Show session vitals",
           group: "Vitals",
           palette: true,
@@ -88,7 +88,7 @@ export default Plugin.define({
           },
         },
         {
-          id: "opencode-vitals-terminal.refresh",
+          id: "opencode-session-vitals.refresh",
           title: "Refresh session vitals",
           group: "Vitals",
           palette: true,

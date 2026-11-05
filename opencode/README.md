@@ -1,4 +1,4 @@
-# OpenCode Vitals Terminal
+# OpenCode Session Vitals
 
 **Session usage, below your prompt and in your sidebar.**
 
@@ -71,7 +71,7 @@ Requires **OpenCode V2 2.0.26 or later**, with the CLI plugin API. Tested agains
 
 ### Install from npm (recommended)
 
-The plugin is published as [`opencode-vitals-terminal` on npm](https://www.npmjs.com/package/opencode-vitals-terminal). OpenCode installs the npm package and supplies the runtime that loads the plugin; no separate `npm install` is needed.
+The plugin is published as [`opencode-session-vitals` on npm](https://www.npmjs.com/package/opencode-session-vitals). OpenCode installs the npm package and supplies the runtime that loads the plugin; no separate `npm install` is needed.
 
 Merge these entries into `plugins` in `~/.config/opencode/cli.json` (or `$XDG_CONFIG_HOME/opencode/cli.json`):
 
@@ -81,12 +81,12 @@ Merge these entries into `plugins` in `~/.config/opencode/cli.json` (or `$XDG_CO
   "plugins": [
     "-opencode.prompt.footer",
     "-opencode.sidebar.context",
-    "opencode-vitals-terminal"
+    "opencode-session-vitals"
   ]
 }
 ```
 
-**Keep your other settings and plugin entries.** [`cli.example.json`](cli.example.json) contains the configuration above; do not copy it over an existing config. To pin a release, use `opencode-vitals-terminal@0.3.0` instead of the unversioned package name. See [CHANGELOG.md](CHANGELOG.md) for release notes.
+**Keep your other settings and plugin entries.** [`cli.example.json`](cli.example.json) contains the configuration above; do not copy it over an existing config. To pin a release, append the version to the package name. Releases before the rename were published under the former package name, `opencode-vitals-terminal`. See [CHANGELOG.md](CHANGELOG.md) for release notes.
 
 The first entry disables only the built-in footer contribution that contains the original token/cost line. Without it, both summaries appear. Our contribution uses the same `prompt.footer` slot, rather than replacing the whole footer: the host's spinner, working directory, interrupt status, and editor-file display remain intact. Shell-mode hints, command/agent shortcuts when space permits, and running-subagent/shell indicators are retained.
 
@@ -106,7 +106,7 @@ npm ci
 
 For **mise** users, `mise.toml` pins a compatible Node version for this checkout. Run `mise install` before `npm ci`. If mise is not activated in your shell, use `mise exec -- npm ci` instead.
 
-In the configuration above, replace `opencode-vitals-terminal` with the absolute path to your checkout, such as `/absolute/path/session-vitals-plugin/opencode`. Keep both `-opencode.prompt.footer` and `-opencode.sidebar.context` entries, then restart or reload the terminal client.
+In the configuration above, replace `opencode-session-vitals` with the absolute path to your checkout, such as `/absolute/path/session-vitals-plugin/opencode`. Keep both `-opencode.prompt.footer` and `-opencode.sidebar.context` entries, then restart or reload the terminal client.
 
 ### Preview without changing configuration
 
@@ -207,12 +207,12 @@ The separate **Mutation testing** GitHub Actions workflow runs on demand via **R
 
 ## Publishing
 
-The **Publish** GitHub Actions workflow publishes to npm on demand via **Run workflow**, or automatically when a `v*` tag is pushed. It uses [npm trusted publishing](https://docs.npmjs.com/trusted-publishers/) with OIDC, so no npm token is stored in GitHub.
+The **Publish** GitHub Actions workflow publishes to npm on demand via **Run workflow**, or automatically when an `opencode-v*` tag is pushed. It uses [npm trusted publishing](https://docs.npmjs.com/trusted-publishers/) with OIDC, so no npm token is stored in GitHub.
 
 Before the first run, configure a GitHub Actions trusted publisher in the npm package's **Settings → Trusted publishing**:
 
 - Organization or user: `skatkov`
-- Repository: `opencode-vitals-terminal`
+- Repository: `session-vitals-plugin`
 - Workflow filename: `publish.yml`
 - Environment name: leave blank
 - Allowed actions: enable direct publishing with `npm publish`

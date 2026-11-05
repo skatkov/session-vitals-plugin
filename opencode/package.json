@@ -1,5 +1,5 @@
 {
-  "name": "opencode-vitals-terminal",
+  "name": "opencode-session-vitals",
   "version": "0.3.0",
   "description": "Turns, model steps, and token usage in OpenCode V2's terminal prompt footer and session sidebar.",
   "type": "module",
@@ -43,6 +43,7 @@
     "opencode",
     "opencode-plugin",
     "opencode-v2",
+    "session-vitals",
     "tui",
     "metrics"
   ],

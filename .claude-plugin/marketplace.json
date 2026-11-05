@@ -1,5 +1,5 @@
 {
-  "name": "claude-code-vitals",
+  "name": "session-vitals",
   "description": "Session usage in the prompt footer and sidebar of your terminal coding agent.",
   "owner": {
     "name": "Stanislav Katkov"

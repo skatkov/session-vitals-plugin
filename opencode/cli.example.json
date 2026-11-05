@@ -3,6 +3,6 @@
   "plugins": [
     "-opencode.prompt.footer",
     "-opencode.sidebar.context",
-    "opencode-vitals-terminal"
+    "opencode-session-vitals"
   ]
 }

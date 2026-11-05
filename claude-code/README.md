@@ -2,7 +2,7 @@
 
 **Session usage in Claude Code's prompt footer and a Vitals pane.**
 
-A Claude Code mod (function-hooks plugin) inspired by [opencode-vitals-terminal](https://github.com/skatkov/opencode-vitals-terminal). It shows turns, model steps and context usage at the right of the prompt footer, on the same lane as the mode labels, plus cumulative tokens, cost and tool-call statistics in a pane beside the chat. It makes no extra model requests and sends no telemetry.
+A Claude Code mod (function-hooks plugin) the sibling of [OpenCode Session Vitals](../opencode/README.md) in this repository. It shows turns, model steps and context usage at the right of the prompt footer, on the same lane as the mode labels, plus cumulative tokens, cost and tool-call statistics in a pane beside the chat. It makes no extra model requests and sends no telemetry.
 
 ```text
 8 turns · 42 steps · 24K (19%)

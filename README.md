@@ -1,4 +1,4 @@
-# Vitals
+# Session Vitals
 
 Session usage where you already look: in the prompt footer and sidebar of your terminal coding agent.
 
@@ -29,7 +29,7 @@ Both plugins show the same things — turns, model steps, context usage, cumulat
   "plugins": [
     "-opencode.prompt.footer",
     "-opencode.sidebar.context",
-    "opencode-vitals-terminal"
+    "opencode-session-vitals"
   ]
 }
 ```

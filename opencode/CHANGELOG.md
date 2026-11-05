@@ -10,6 +10,8 @@
 
 ### Changed
 
+- Renamed the npm package from `opencode-vitals-terminal` to `opencode-session-vitals`, matching the `session-vitals` naming shared with the sibling Claude Code plugin. Update the entry in your `cli.json` `plugins` array; the former package name is deprecated on npm and receives no further releases.
+- Renamed the plugin contribution ids from `opencode-vitals-terminal*` to `opencode-session-vitals*`. This only affects configuration that referenced those ids directly.
 - Hide the cost line in the sidebar and `/vitals` when no positive session cost is recorded. It appears automatically once the recorded cost is greater than zero.
 
 ## [0.3.0] - 2026-10-12
