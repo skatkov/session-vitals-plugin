@@ -112,7 +112,6 @@ test("sidebar marks partial counters without marking current context as partial"
     { label: "Steps", value: "~1" },
     { label: "Total tokens", value: "~185" },
     { label: "Context", value: "185" },
-    { label: "Cost", value: "$0.00" },
     { label: "Tool calls", value: "~0" },
   ])
 })
@@ -122,11 +121,11 @@ test("sidebar retains a placeholder before any context usage is available", () =
   vitals.context = undefined
   assert.deepEqual(sidebarRows(vitals, { complete: true, cost: 0 }).slice(3, 5), [
     { label: "Context", value: "–" },
-    { label: "Cost", value: "$0.00" },
+    { label: "Tool calls", value: "0" },
   ])
 })
 
-test("sidebar always includes total tokens, context, and zero recorded cost", () => {
+test("sidebar includes total tokens and context but hides zero recorded cost", () => {
   assert.deepEqual(sidebarRows(sampleVitals(), {
     complete: true, cost: 0,
   }), [
@@ -134,9 +133,14 @@ test("sidebar always includes total tokens, context, and zero recorded cost", ()
     { label: "Steps", value: "1" },
     { label: "Total tokens", value: "185" },
     { label: "Context", value: "185" },
-    { label: "Cost", value: "$0.00" },
     { label: "Tool calls", value: "0" },
   ])
+})
+
+test("sidebar shows positive recorded cost even when it rounds to zero cents", () => {
+  assert.deepEqual(sidebarRows(sampleVitals(), { complete: true, cost: 0.001 }).find((row) => row.label === "Cost"), {
+    label: "Cost", value: "$0.00",
+  })
 })
 
 test("sidebar preserves a known zero-percent context estimate", () => {
@@ -153,13 +157,13 @@ test("sidebar shows exact total tool calls and an indented breakdown, marking in
     toolCalls: 1_235,
     tools: [{ name: "read", calls: 1_234 }, { name: "mcp.server.search", calls: 1 }],
   }
-  assert.deepEqual(sidebarRows(vitals, { complete: true, cost: 0 }).slice(5), [
+  assert.deepEqual(sidebarRows(vitals, { complete: true, cost: 0 }).slice(4), [
     { label: "Tool calls", value: "1,235" },
     { label: "  read", value: "1,234" },
     { label: "  mcp (subtotal)", value: "1" },
     { label: "    server.search", value: "1" },
   ])
-  assert.deepEqual(sidebarRows(vitals, { complete: false, cost: 0 }).slice(5), [
+  assert.deepEqual(sidebarRows(vitals, { complete: false, cost: 0 }).slice(4), [
     { label: "Tool calls", value: "~1,235" },
     { label: "  read", value: "~1,234" },
     { label: "  mcp (subtotal)", value: "~1" },
@@ -180,7 +184,7 @@ test("sidebar groups Rubydex tools under an exact subtotal without changing acco
     ],
   }
   const before = structuredClone(vitals)
-  assert.deepEqual(sidebarRows(vitals, { complete: true, cost: 0 }).slice(5), [
+  assert.deepEqual(sidebarRows(vitals, { complete: true, cost: 0 }).slice(4), [
     { label: "Tool calls", value: "4,800" },
     { label: "  rubydex (subtotal)", value: "1,800" },
     { label: "    get_declaration", value: "1,000" },
@@ -189,7 +193,7 @@ test("sidebar groups Rubydex tools under an exact subtotal without changing acco
     { label: "  execute", value: "900" },
     { label: "  shell", value: "600" },
   ])
-  assert.deepEqual(sidebarRows(vitals, { complete: false, cost: 0 }).slice(5), [
+  assert.deepEqual(sidebarRows(vitals, { complete: false, cost: 0 }).slice(4), [
     { label: "Tool calls", value: "~4,800" },
     { label: "  rubydex (subtotal)", value: "~1,800" },
     { label: "    get_declaration", value: "~1,000" },
@@ -213,7 +217,7 @@ test("sidebar sorts the Rubydex subtotal with other tools and preserves child or
       { name: "rubydex.get_file_declarations", calls: 4 },
     ],
   }
-  assert.deepEqual(sidebarRows(vitals, { complete: true, cost: 0 }).slice(5), [
+  assert.deepEqual(sidebarRows(vitals, { complete: true, cost: 0 }).slice(4), [
     { label: "Tool calls", value: "42" },
     { label: "  execute", value: "14" },
     { label: "  read", value: "14" },
@@ -237,7 +241,7 @@ test("sidebar groups exact namespaces case-sensitively and leaves plain names se
       { name: "rubydexish", calls: 1 },
     ],
   }
-  assert.deepEqual(sidebarRows(vitals, { complete: true, cost: 0 }).slice(5), [
+  assert.deepEqual(sidebarRows(vitals, { complete: true, cost: 0 }).slice(4), [
     { label: "Tool calls", value: "21" },
     { label: "  Rubydex (subtotal)", value: "6" },
     { label: "    get_declaration", value: "6" },
@@ -264,7 +268,7 @@ test("sidebar marks every namespace subtotal and child as incomplete without add
     ],
   }
   const before = structuredClone(vitals)
-  assert.deepEqual(sidebarRows(vitals, { complete: false, cost: 0 }).slice(5), [
+  assert.deepEqual(sidebarRows(vitals, { complete: false, cost: 0 }).slice(4), [
     { label: "Tool calls", value: "~7" },
     { label: "  posh (subtotal)", value: "~4" },
     { label: "    posh_search", value: "~3" },

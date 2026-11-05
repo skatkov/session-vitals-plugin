@@ -130,7 +130,7 @@ test("a footer without a session neither reads history nor observes accounting",
   fixture.dispose()
 })
 
-test("cumulative tokens and zero recorded cost stay in the sidebar, never the footer", async () => {
+test("sidebar cost appears and disappears with recorded spending without changing the footer", async () => {
   const fixture = views()
   fixture.setCost(0)
   const footer = createRoot((dispose) => ({
@@ -144,11 +144,15 @@ test("cumulative tokens and zero recorded cost stay in the sidebar, never the fo
     dispose,
   }))
   assert.equal(footer.summary(), "38.7K (10%)")
-  assert.deepEqual(sidebar.rows().map((row) => row.label), ["Turns", "Steps", "Total tokens", "Context", "Cost", "Tool calls"])
+  assert.deepEqual(sidebar.rows().map((row) => row.label), ["Turns", "Steps", "Total tokens", "Context", "Tool calls"])
   assert.deepEqual(sidebar.rows()[2], { label: "Total tokens", value: "549,700" })
-  assert.deepEqual(sidebar.rows().find((row) => row.label === "Cost"), { label: "Cost", value: "$0.00" })
+  assert.equal(sidebar.rows().find((row) => row.label === "Cost"), undefined)
   fixture.setCost(2.5)
+  assert.deepEqual(sidebar.rows().map((row) => row.label), ["Turns", "Steps", "Total tokens", "Context", "Cost", "Tool calls"])
   assert.deepEqual(sidebar.rows().find((row) => row.label === "Cost"), { label: "Cost", value: "$2.50" })
+  assert.equal(footer.summary(), "38.7K (10%)")
+  fixture.setCost(0)
+  assert.deepEqual(sidebar.rows().map((row) => row.label), ["Turns", "Steps", "Total tokens", "Context", "Tool calls"])
   assert.equal(footer.summary(), "38.7K (10%)")
   sidebar.dispose()
   assert.equal(footer.summary(), "1 turn · 1 step · 38.7K (10%)")

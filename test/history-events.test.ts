@@ -39,7 +39,7 @@ test("tool events read the updated cache and drive sidebar counts through produc
     dispose,
   }))
   t.after(() => { stopEvents(); view.dispose(); history.dispose(); vitals.dispose() })
-  assert.deepEqual(view.rows().slice(5), [{ label: "Tool calls", value: "0" }])
+  assert.deepEqual(view.rows().slice(4), [{ label: "Tool calls", value: "0" }])
 
   bus.emit({
     id: "event-called", created: 1, type: "session.tool.called",
@@ -48,9 +48,9 @@ test("tool events read the updated cache and drive sidebar counts through produc
   })
   // The host cache can update after our subscription's synchronous callback.
   cached = [assistant("msg_002", { content: [tool("call-a", "execute")] })]
-  assert.deepEqual(view.rows().slice(5), [{ label: "Tool calls", value: "0" }])
+  assert.deepEqual(view.rows().slice(4), [{ label: "Tool calls", value: "0" }])
   await flushEvents()
-  assert.deepEqual(view.rows().slice(5), [
+  assert.deepEqual(view.rows().slice(4), [
     { label: "Tool calls", value: "1" },
     { label: "  execute", value: "1" },
   ])
@@ -66,7 +66,7 @@ test("tool events read the updated cache and drive sidebar counts through produc
   bus.emit(progress)
   bus.emit(progress)
   await flushEvents()
-  assert.deepEqual(view.rows().slice(5), [
+  assert.deepEqual(view.rows().slice(4), [
     { label: "Tool calls", value: "2" },
     { label: "  execute", value: "1" },
     { label: "  rubydex (subtotal)", value: "1" },
@@ -90,7 +90,7 @@ test("tool events read the updated cache and drive sidebar counts through produc
     },
   })
   await flushEvents()
-  assert.deepEqual(view.rows().slice(5), [
+  assert.deepEqual(view.rows().slice(4), [
     { label: "Tool calls", value: "4" },
     { label: "  rubydex (subtotal)", value: "2" },
     { label: "    codebase_stats", value: "2" },
@@ -111,7 +111,7 @@ test("tool events read the updated cache and drive sidebar counts through produc
     },
   })
   await flushEvents()
-  assert.deepEqual(view.rows().slice(5), [
+  assert.deepEqual(view.rows().slice(4), [
     { label: "Tool calls", value: "5" },
     { label: "  rubydex (subtotal)", value: "2" },
     { label: "    codebase_stats", value: "2" },
@@ -128,16 +128,16 @@ test("tool events read the updated cache and drive sidebar counts through produc
   })] })]
   bus.emit(progress)
   await flushEvents()
-  assert.equal(view.rows()[5].value, "5")
+  assert.equal(view.rows()[4].value, "5")
   cached = []
   bus.emit(progress)
   await flushEvents()
-  assert.equal(view.rows()[5].value, "5")
+  assert.equal(view.rows()[4].value, "5")
   stopEvents()
   cached = [assistant("msg_004", { content: [tool("call-c", "shell")] })]
   bus.emit(progress)
   await flushEvents()
-  assert.equal(view.rows()[5].value, "5")
+  assert.equal(view.rows()[4].value, "5")
 })
 
 test("undo, reconnect, deletion, and cleanup use the same production subscriptions", async (t) => {

@@ -22,7 +22,7 @@ export function sidebarRows(
     { label: "Steps", value: `${prefix}${number(vitals.steps)}` },
     { label: "Total tokens", value: `${prefix}${number(vitals.totalTokens)}` },
     { label: "Context", value: `${context}${percent}` },
-    { label: "Cost", value: formatCost(input.cost) },
+    ...(input.cost > 0 ? [{ label: "Cost", value: formatCost(input.cost) }] : []),
     { label: "Tool calls", value: `${prefix}${number(vitals.toolCalls)}` },
     ...toolBreakdown(vitals.tools).map((tool) => ({ label: tool.label, value: `${prefix}${number(tool.calls)}` })),
   ]

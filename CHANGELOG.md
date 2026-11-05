@@ -8,6 +8,10 @@
 - Include nested Code Mode invocations from `execute` metadata, so MCP tools such as Rubydex appear under their own names instead of only as `execute`.
 - Group dotted sidebar tool names by their namespace under `<namespace> (subtotal)` headings, including Rubydex, POSH, and other tool namespaces. Plain tool names remain separate; individual tool counts are indented beneath their subtotal. Session totals and recorded tool names are unchanged.
 
+### Changed
+
+- Hide the cost line in the sidebar and `/vitals` when no positive session cost is recorded. It appears automatically once the recorded cost is greater than zero.
+
 ## [0.3.0] - 2026-10-12
 
 ### Changed

@@ -45,7 +45,7 @@ test("layout, cost, and completeness updates only reformat the shared metrics", 
     }
   })
   assert.equal(reads, 1)
-  assert.deepEqual(view.rows().find((row) => row.label === "Cost"), { label: "Cost", value: "$0.00" })
+  assert.equal(view.rows().find((row) => row.label === "Cost"), undefined)
   setWidth(16)
   assert.equal(view.summary(), "1t · 1s · 185")
   setWidth(160)

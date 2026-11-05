@@ -62,7 +62,9 @@ export default Plugin.define({
                 Context: {number(usage().tokens)} tokens{usage().percent === undefined ? "" : ` (${usage().percent}% used)`}
               </text>}
             </Show>
-            <text fg={context.theme.text.muted}>Spent: {formatCost(context.data.session.cost(sessionID))}</text>
+            <Show when={context.data.session.cost(sessionID) > 0}>
+              <text fg={context.theme.text.muted}>Spent: {formatCost(context.data.session.cost(sessionID))}</text>
+            </Show>
             <text fg={context.theme.text.muted}>Turns = delivered user messages. Steps = model calls, including a running step.</text>
             <text fg={context.theme.text.muted}>This session only; subagents have their own counters. Esc to close.</text>
           </box>
