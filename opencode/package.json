@@ -1,0 +1,76 @@
+{
+  "name": "opencode-vitals-terminal",
+  "version": "0.3.0",
+  "description": "Turns, model steps, and token usage in OpenCode V2's terminal prompt footer and session sidebar.",
+  "type": "module",
+  "author": "Stanislav (Stas) Katkov <git@skatkov.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skatkov/opencode-vitals-terminal.git"
+  },
+  "homepage": "https://github.com/skatkov/opencode-vitals-terminal#readme",
+  "bugs": {
+    "url": "https://github.com/skatkov/opencode-vitals-terminal/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "engines": {
+    "node": ">=26.4.0"
+  },
+  "exports": {
+    ".": "./index.ts",
+    "./tui": "./tui.tsx"
+  },
+  "files": [
+    "index.ts",
+    "tui.tsx",
+    "src",
+    "CHANGELOG.md",
+    "cli.example.json",
+    "screenshot.png"
+  ],
+  "scripts": {
+    "check": "tsc --noEmit",
+    "test": "node --conditions=browser --experimental-strip-types --test test/*.test.ts",
+    "test:mutation": "stryker run",
+    "prepublishOnly": "npm run check && npm test"
+  },
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "opencode-v2",
+    "tui",
+    "metrics"
+  ],
+  "dependencies": {
+    "@opencode/plugin": "^2.0.26"
+  },
+  "peerDependencies": {
+    "@opentui/core": ">=0.5.17",
+    "@opentui/solid": ">=0.5.17",
+    "solid-js": ">=1.9.0"
+  },
+  "overrides": {
+    "seroval": "^1.6.9",
+    "@stryker-mutator/core": {
+      "qs": "^6.16.0"
+    }
+  },
+  "allowScripts": {
+    "msgpackr-extract": false
+  },
+  "devDependencies": {
+    "@opencode/theme": "2.0.26",
+    "@opentui/core": "0.5.17",
+    "@opentui/solid": "0.5.17",
+    "@stryker-mutator/core": "^10.0.0",
+    "@stryker-mutator/tap-runner": "^10.0.0",
+    "@stryker-mutator/typescript-checker": "^10.0.0",
+    "@types/node": "^24.0.0",
+    "solid-js": "1.9.12",
+    "typescript": "^5.9.0"
+  }
+}
