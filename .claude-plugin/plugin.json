@@ -1,0 +1,8 @@
+{
+  "name": "session-vitals",
+  "version": "0.1.0",
+  "description": "Turns, model steps, context, tokens, cost and tool-call stats in Claude Code's prompt footer and a Vitals pane.",
+  "author": { "name": "Stanislav Katkov" },
+  "license": "MIT",
+  "types": "./types/index.d.ts"
+}
